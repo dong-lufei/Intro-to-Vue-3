@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computed Properties</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../vue@3.2.37.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      <div class="cart">Cart({{cart}})</div>
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <img :src="image" />
+          </div>
+          <div class="product-info">
+            <h1>{{title}}</h1>
+            <p v-if="inStock>10">有存货</p>
+            <p v-else>缺货</p>
+            <ul>
+              <li v-for="detail in details">{{detail}}</li>
+            </ul>
+            <div
+              v-for="(variant,i) in variants"
+              :key="variant.id"
+              @mouseover="updateVariant(i)"
+              class="color-circle"
+              :style="{backgroundColor:variant.color}"
+            ></div>
+            <button
+              @click="addToCart"
+              class="button"
+              :disabled="inStock"
+              :class="{disabledButton:inStock}"
+            >
+              添加到购物车
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+    <script>
+      // 可在控制台给vm.product赋值看到页面数据立马变化
+      const vm = app.mount("#app")
+    </script>
+  </body>
+</html>

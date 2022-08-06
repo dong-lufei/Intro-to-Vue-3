@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms and v-model</title>
+    <!-- 引用css -->
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <!-- 引用vue文件 -->
+    <!-- 方式一：使用线上CDN -->
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+    <!-- 方式二：下载线上CDN到本地 -->
+    <script src="../vue@3.2.37.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+
+      <div class="cart">Cart({{cart.length}})</div>
+      <!-- 这种非脚手架搭建写法，不支持大驼峰组件元素使用即ProductDisplay； 父组件（使用）监听子组件抛出来的事件add-to-cart-->
+      <product-display
+        :premium="premium"
+        @add-to-cart="updateCart"
+      ></product-display>
+    </div>
+    <!-- 引用vue实例 -->
+    <script src="./main.js"></script>
+    <!-- 引用以下2个全局组件 -->
+    <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ReviewForm.js"></script>
+    <script src="./components/ReviewList.js"></script>
+    <script>
+      // 可在控制台给vm.product赋值看到页面数据立马变化
+      const vm = app.mount("#app")
+    </script>
+  </body>
+</html>
